@@ -25,11 +25,11 @@
 
 Valores base da diária por tipo de veículo:
 
-Tipo de Veículo	Valor por dia
-PEQUENO	R$ 100,00
-MEDIO	R$ 150,00
-SUV	R$ 200,00
-
+| Tipo de Veículo | Valor por dia |
+| --------------- | ------------- |
+| PEQUENO         | R$ 100,00     |
+| MEDIO           | R$ 150,00     |
+| SUV             | R$ 200,00     |
 
 ### Itens bônus - Opcionais
 - Paginar as listagem envolvidas;
