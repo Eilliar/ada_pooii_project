@@ -11,7 +11,7 @@ public class Menu {
         do {
             System.out.println("\nMenu:");
             System.out.println("0. Register New Vehicle");
-            System.out.println("1. Alter Vehicle Registry");
+            System.out.println("1. Edit Vehicle Registry");
             System.out.println("2. Search Vehicle");
             System.out.println("3. Register Client");
             System.out.println("4. Alter Client Registry");
@@ -26,8 +26,10 @@ public class Menu {
                     vMenu.RegisterNewVehicle(scanner);
                     break;
                 case 1:
+                    vMenu.EditVehicle(scanner);
                     break;
                 case 2:
+                    vMenu.SearchVehicle(scanner);
                     break;
                 case 3:
                     break;

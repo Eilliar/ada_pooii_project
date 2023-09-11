@@ -38,6 +38,15 @@ public class VehicleRepository implements IRepository<Vehicle> {
     }
 
     @Override
+    public void edit(Vehicle newVehicle) {
+        Vehicle oldVehicle = this.search(newVehicle.getPlate());
+        newVehicle.setId(oldVehicle.getId());
+        this.vehicles.remove(oldVehicle);
+        this.vehicles.add(newVehicle);
+        System.out.println(this);
+    }
+
+    @Override
     public String toString() {
         String result = "";
         for (Vehicle v : this.vehicles) {
@@ -45,4 +54,6 @@ public class VehicleRepository implements IRepository<Vehicle> {
         }
         return result;
     }
+
+
 }

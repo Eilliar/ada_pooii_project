@@ -32,4 +32,9 @@ public class ClientRepository implements IRepository<Client>{
         }
         return null;
     }
+
+    @Override
+    public void edit(Client client) {
+
+    }
 }
