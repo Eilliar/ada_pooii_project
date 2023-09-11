@@ -6,11 +6,12 @@ import repository.VehicleRepository;
 
 import java.util.Scanner;
 
-public class VehicleMenu {
+public class VehicleMenu implements IEntityMenu{
 
     private VehicleRepository vehicleRepository = new VehicleRepository();
 
-    boolean RegisterNewVehicle(Scanner scanner){
+    @Override
+    public boolean RegisterNew(Scanner scanner){
         System.out.println("Give the vehicle plate:");
         String plate = scanner.nextLine();
         if(this.vehicleRepository.search(plate) != null){
@@ -44,7 +45,8 @@ public class VehicleMenu {
         return this.vehicleRepository.search(plate);
     }
 
-    boolean EditVehicle(Scanner scanner){
+    @Override
+    public boolean EditRegister(Scanner scanner){
         Vehicle vehicle = this.InternalSearch(scanner);
         if(vehicle == null){
             System.out.println("No vehicle found with this plate.");
@@ -93,7 +95,8 @@ public class VehicleMenu {
         return true;
     }
 
-    void SearchVehicle(Scanner scanner){
+    @Override
+    public void SearchRegister(Scanner scanner){
         Vehicle vehicle = this.InternalSearch(scanner);
         if(vehicle == null){
             System.out.println("No vehicle found with this plate.");

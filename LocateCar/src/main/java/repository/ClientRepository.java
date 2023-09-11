@@ -1,6 +1,7 @@
 package repository;
 
 import entity.Client;
+import entity.Vehicle;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +9,8 @@ import java.util.Set;
 public class ClientRepository implements IRepository<Client>{
 
     Set<Client> clients = new HashSet<>();
+    private static int numberOfClients = 0;
+
     @Override
     public boolean register(Client client) {
         boolean contains = false;
@@ -18,7 +21,9 @@ public class ClientRepository implements IRepository<Client>{
             }
         }
         if (!contains) {
+            client.setId(numberOfClients);
             this.clients.add(client);
+            numberOfClients += 1;
         }
         return !contains;
     }
@@ -36,5 +41,14 @@ public class ClientRepository implements IRepository<Client>{
     @Override
     public void edit(Client client) {
 
+    }
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (Client c : this.clients) {
+            result += "\n" + c.toString();
+        }
+        return result;
     }
 }

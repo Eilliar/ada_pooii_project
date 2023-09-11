@@ -2,20 +2,24 @@ package entity;
 
 public class Client {
 
-    private final int id;
+    private int id;
     private final String name;
     private final CLIENT_CATEGORY category;
     private final String document;
 
-    public int getId() {
-        return id;
-    }
 
-    public Client(int id, String name, CLIENT_CATEGORY category, String document) {
-        this.id = id;
+    public Client(String name, CLIENT_CATEGORY category, String document) {
         this.name = name;
         this.category = category;
         this.document = document;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
