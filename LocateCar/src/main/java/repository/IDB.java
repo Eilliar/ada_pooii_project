@@ -1,11 +1,8 @@
 package repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public interface DB {
+public interface IDB {
 
     record JDBC(String URL, String Username, String Password) {
     }
@@ -32,7 +29,18 @@ public interface DB {
         }
     }
 
+//    default ResultSet insertRegister(PreparedStatement insertStatement, JDBC jdbc) throws SQLException {
+//        try (Connection connection = this.getConnection(jdbc)) {
+//            insertStatement.executeUpdate();
+//            ResultSet generatedKeys = insertStatement.getGeneratedKeys();
+//
+//            return generatedKeys;
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//    }
+
     void initializeDB() throws SQLException;
 
-    void insertRegister() throws SQLException;
+
 }

@@ -2,7 +2,7 @@ package repository;
 
 import java.sql.SQLException;
 
-public class H2DB implements DB {
+public class H2IDB implements IDB {
 
     JDBC jdbc = new JDBC("jdbc:h2:file:./LocateCar;DB_CLOSE_DELAY=-1", "ada", "santander");
 
@@ -47,8 +47,7 @@ public class H2DB implements DB {
 
     }
 
-    @Override
-    public void insertRegister() throws SQLException {
-        return;
-    }
+//    @Override
+//    public void insertRegister(String insertIntoSQL, JDBC jdbc) throws SQLException {
+//    }
 }
