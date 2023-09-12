@@ -1,7 +1,6 @@
 package repository;
 
 import entity.Rent;
-import entity.Vehicle;
 
 import java.util.HashSet;
 import java.util.Set;

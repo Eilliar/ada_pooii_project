@@ -41,6 +41,13 @@ public class ClientMenu implements IEntityMenu{
 
     @Override
     public void SearchRegister(Scanner scanner) {
-
+        System.out.println("Give me the client's document:");
+        String document = scanner.nextLine();
+        Client client = this.clientRepository.search(document);
+        if(client == null){
+            System.out.println("Client not found.");
+        }else {
+            System.out.println(client);
+        }
     }
 }

@@ -1,7 +1,6 @@
 package repository;
 
 import entity.Client;
-import entity.Vehicle;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +16,7 @@ public class ClientRepository implements IRepository<Client>{
         for (Client c : this.clients) {
             if (c.getDocument().equalsIgnoreCase(client.getDocument())) {
                 contains = true;
+                System.out.println("Client already exists, use Edit option.");
                 break;
             }
         }
