@@ -8,7 +8,11 @@ import java.util.Scanner;
 
 public class VehicleMenu implements IEntityMenu{
 
-    private VehicleRepository vehicleRepository = new VehicleRepository();
+    private VehicleRepository vehicleRepository;
+
+    public VehicleMenu(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+    }
 
     @Override
     public boolean RegisterNew(Scanner scanner){

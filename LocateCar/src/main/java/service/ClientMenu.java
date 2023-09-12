@@ -7,7 +7,12 @@ import repository.ClientRepository;
 import java.util.Scanner;
 
 public class ClientMenu implements IEntityMenu{
-    private ClientRepository clientRepository = new ClientRepository();
+
+    private ClientRepository clientRepository;
+    public ClientMenu(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
     @Override
     public boolean RegisterNew(Scanner scanner) {
         System.out.println("Choose one of the categories bellow:");

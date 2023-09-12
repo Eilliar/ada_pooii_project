@@ -1,13 +1,26 @@
 package service;
 
+import repository.ClientRepository;
+import repository.RentRepository;
+import repository.VehicleRepository;
+
 import java.util.Scanner;
 
 public class Menu {
+    private IEntityMenu vehicleMenu;
+    private IEntityMenu clientMenu;
+    private IEntityMenu rentMenu;
+    private Scanner scanner = new Scanner(System.in);
+    public Menu() {
+        VehicleRepository vehicleRepository = new VehicleRepository();
+        ClientRepository clientRepository = new ClientRepository();
+        RentRepository rentRepository = new RentRepository();
+        this.vehicleMenu = new VehicleMenu(vehicleRepository);
+        this.clientMenu = new ClientMenu(clientRepository);
+        this.rentMenu = new RentMenu(rentRepository, vehicleRepository, clientRepository);
+    }
 
     public void runUserInterface() {
-        Scanner scanner = new Scanner(System.in);
-        IEntityMenu vMenu = new VehicleMenu();
-        IEntityMenu cMenu = new ClientMenu();
         int chosenOption;
         do {
             System.out.println("\nMenu:");
@@ -25,24 +38,25 @@ public class Menu {
             scanner.nextLine(); //Clear buffer
             switch (chosenOption) {
                 case 0:
-                    vMenu.RegisterNew(scanner);
+                    vehicleMenu.RegisterNew(scanner);
                     break;
                 case 1:
-                    vMenu.EditRegister(scanner);
+                    vehicleMenu.EditRegister(scanner);
                     break;
                 case 2:
-                    vMenu.SearchRegister(scanner);
+                    vehicleMenu.SearchRegister(scanner);
                     break;
                 case 3:
-                    cMenu.RegisterNew(scanner);
+                    clientMenu.RegisterNew(scanner);
                     break;
                 case 4:
-                    cMenu.EditRegister(scanner);
+                    clientMenu.EditRegister(scanner);
                     break;
                 case 5:
-                    cMenu.SearchRegister(scanner);
+                    clientMenu.SearchRegister(scanner);
                     break;
                 case 6:
+                    rentMenu.RegisterNew(scanner);
                     break;
                 case 7:
                     break;
