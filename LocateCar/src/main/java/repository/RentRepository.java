@@ -32,7 +32,12 @@ public class RentRepository implements IRepository<Rent>{
     }
 
     @Override
-    public Rent search(String keyword) {
+    public Rent search(String plate) {
+        for(Rent r: this.rents){
+            if(r.isActive() & r.getVehicle().getPlate().equalsIgnoreCase(plate)){
+                return r;
+            }
+        }
         return null;
     }
 

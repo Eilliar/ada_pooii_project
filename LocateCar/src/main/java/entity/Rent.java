@@ -1,9 +1,7 @@
 package entity;
 
-
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class Rent {
     private int id;
@@ -40,16 +38,17 @@ public class Rent {
         return isActive;
     }
 
-    void endRent(LocalDateTime deliveryDateTime){
+    public void endRent(LocalDateTime deliveryDateTime){
         this.deliveryDateTime = deliveryDateTime;
         this.calculateCharge();
         this.isActive = false;
     }
 
     private void  calculateCharge(){
-        Duration duration = Duration.between(this.deliveryDateTime, this.pickupDateTime);
-        double daily = Math.ceil(duration.toHours()/24.0);
-
+        long daily = ChronoUnit.DAYS.between(this.pickupDateTime, this.deliveryDateTime);
+        if(this.deliveryDateTime.isAfter(this.pickupDateTime.plusDays(daily))){
+            daily += 1; // if hour:min is before pickup, add 1 daily
+        }
         this.base_rate = (daily * this.vehicle.getCategory().daily_rate);
         if (this.client.getCategory() == CLIENT_CATEGORY.PF & daily > CLIENT_CATEGORY.PF.minDaysToDiscount){
             this.charge = (1.0 - CLIENT_CATEGORY.PF.discount) * this.base_rate;
@@ -69,9 +68,9 @@ public class Rent {
                 ", place='" + place + '\'' +
                 ", pickupDateTime=" + pickupDateTime +
                 ", deliveryDateTime=" + deliveryDateTime +
-                ", client=" + client +
-                ", vehicle=" + vehicle +
-                ", charge=" + charge +
+                ", \n\tclient=" + client +
+                ", \n\tvehicle=" + vehicle +
+                ", \n\tcharge=" + charge +
                 ", base_rate=" + base_rate +
                 ", isActive=" + isActive +
                 '}';

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Menu {
     private IEntityMenu vehicleMenu;
     private IEntityMenu clientMenu;
-    private IEntityMenu rentMenu;
+    private RentMenu rentMenu;
     private Scanner scanner = new Scanner(System.in);
     public Menu() {
         VehicleRepository vehicleRepository = new VehicleRepository();
@@ -59,6 +59,7 @@ public class Menu {
                     rentMenu.RegisterNew(scanner);
                     break;
                 case 7:
+                    rentMenu.ReturnVehicle(scanner);
                     break;
                 case 8:
                     System.out.println("Ok, bye.");

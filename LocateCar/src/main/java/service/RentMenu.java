@@ -7,9 +7,11 @@ import repository.ClientRepository;
 import repository.RentRepository;
 import repository.VehicleRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class RentMenu implements IEntityMenu{
+public class RentMenu{
 
     RentRepository rentRepository;
     VehicleRepository vehicleRepository;
@@ -21,7 +23,6 @@ public class RentMenu implements IEntityMenu{
         this.clientRepository = clientRepository;
     }
 
-    @Override
     public boolean RegisterNew(Scanner scanner) {
         System.out.println("Give me the client document to search for:");
         String document = scanner.nextLine();
@@ -47,13 +48,24 @@ public class RentMenu implements IEntityMenu{
         return true;
     }
 
-    @Override
-    public boolean EditRegister(Scanner scanner) {
-        return false;
-    }
+    public boolean ReturnVehicle(Scanner scanner){
+        System.out.println("Give me the Vehicle's plate:");
+        String plate = scanner.nextLine();
 
-    @Override
-    public void SearchRegister(Scanner scanner) {
+        Rent rent = this.rentRepository.search(plate);
+        if(rent == null){
+            System.out.println("Unable to locate an active rent for this vehicle");
+            return false;
+        }
 
+        System.out.println("Give me the returning date and time (yyyy-MM-dd HH:mm):");
+        String inputDateTime = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime returningDateTime = LocalDateTime.parse(inputDateTime, formatter);
+
+        rent.endRent(returningDateTime);
+        System.out.println(rentRepository);
+
+        return true;
     }
 }
